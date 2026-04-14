@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wait 💙</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00c6ff);
+        color: white;
+    }
+
+    .text {
+        font-size: 30px;
+        line-height: 1.7;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+        .text {
+            font-size: 22px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="text">
+    Hold on… 💙<br><br>
+    Before you continue,<br>
+    there’s something I need to ask you.
+</div>
+
+<script>
+    // smooth pause before proposal
+    setTimeout(() => {
+        window.location.href = "page3.html";
+    }, 3000);
+</script>
+
+</body>
+</html>

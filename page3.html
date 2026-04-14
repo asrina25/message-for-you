@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Last Question 💙</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 15px;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00c6ff);
+        overflow: hidden;
+    }
+
+    .box {
+        text-align: center;
+        color: white;
+        width: 100%;
+        max-width: 420px;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .question {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        line-height: 1.5;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 70%;
+        max-width: 220px;
+    }
+
+    .yes {
+        background: white;
+        color: #0077ff;
+    }
+
+    .yes:hover {
+        background: #0077ff;
+        color: white;
+    }
+
+    .no {
+        background: #ff4d4d;
+        color: white;
+        position: relative;
+    }
+
+    .result {
+        display: none;
+        font-size: 26px;
+        color: white;
+        text-align: center;
+        animation: fadeIn 2s;
+        line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* 📱 Mobile */
+    @media (max-width: 480px) {
+        .question {
+            font-size: 20px;
+        }
+
+        .btn {
+            font-size: 15px;
+            width: 85%;
+        }
+
+        .result {
+            font-size: 22px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box" id="questionBox">
+    <div class="question">
+        If I were your Fatimah (RA), <br>
+        would you be my Ali (RA)? 💍🌙
+    </div>
+
+    <button class="btn yes" onclick="sayYes()">YES 💙</button>
+
+    <!-- FIXED NO BUTTON -->
+    <button class="btn no" onmouseover="moveNo()" onclick="moveNo()">NO 😅</button>
+</div>
+
+<div class="result" id="resultBox">
+   <b> Alhamdulillah! 💙✨<br><br>
+    🤲 May Allah bless our journey 🤍<br><br>
+    Accepted! Lifetime contract activated 💍</b>
+</div>
+
+<!-- Nasheed -->
+<audio id="nasheed" loop>
+    <source src="wedding nasheed.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// YES CLICK
+function sayYes() {
+    document.getElementById("questionBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
+
+    let audio = document.getElementById("nasheed");
+    audio.volume = 0.4;
+    audio.play();
+}
+
+// NO BUTTON MOVE (mobile + desktop)
+function moveNo() {
+    let btn = document.querySelector(".no");
+
+    let maxX = window.innerWidth - btn.offsetWidth;
+    let maxY = window.innerHeight - btn.offsetHeight;
+
+    let x = Math.random() * maxX;
+    let y = Math.random() * maxY;
+
+    btn.style.position = "absolute";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+</script>
+
+</body>
+</html>

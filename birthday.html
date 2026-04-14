@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You 💙</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 15px;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #4facfe, #00c6ff);
+        text-align: center;
+        color: white;
+        overflow: hidden;
+    }
+
+    .box {
+        max-width: 400px;
+        width: 100%;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    /* BIG TITLE */
+    .title {
+        font-size: 40px;
+        font-weight: bold;
+        animation: fadeIn 1.5s ease-in-out, glow 3s infinite;
+    }
+
+    /* SUBTITLE */
+    .subtitle {
+        margin-top: 10px;
+        font-size: 18px;
+        opacity: 0.85;
+    }
+
+    /* glow */
+    @keyframes glow {
+        0%,100% { text-shadow: 0 0 5px rgba(255,255,255,0.3); }
+        50% { text-shadow: 0 0 20px rgba(255,255,255,0.9); }
+    }
+
+    /* PLAY BUTTON */
+    .play-btn {
+        margin-top: 30px;
+        font-size: 30px;
+        background: white;
+        color: #0077ff;
+        border: none;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        transition: 0.3s;
+    }
+
+    .play-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* CONTINUE BUTTON */
+.next-btn {
+    display: block;              /* makes it go to next line */
+    margin: 35px auto 0;         /* center horizontally */
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #0077ff;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.5s;
+}
+    .next-btn.show {
+        opacity: 1;
+        transform: translateY(0);
+        animation: pop 0.4s ease;
+    }
+
+    .next-btn:hover {
+        background: #0077ff;
+        color: white;
+    }
+
+    @keyframes pop {
+        from { transform: scale(0.8); }
+        to { transform: scale(1); }
+    }
+
+    /* confetti */
+    .confetti {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: white;
+        top: -10px;
+        opacity: 0.6;
+        animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* MOBILE */
+    @media (max-width: 480px) {
+        .title { font-size: 32px; }
+        .subtitle { font-size: 15px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="title">Happy Birthday 🎂💙</div>
+
+    <div class="subtitle">
+        Someone wants to talk to you 🤍 <br>
+        Listen to the audio…
+    </div>
+
+    <button class="play-btn" onclick="playAudio()">▶</button>
+
+    <button id="nextBtn" class="next-btn" onclick="goNext()">
+        Continue 💙
+    </button>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="voice">
+    <source src="wedding nasheed.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// 🎉 Confetti
+window.onload = () => {
+    for (let i = 0; i < 25; i++) {
+        let conf = document.createElement("div");
+        conf.classList.add("confetti");
+        conf.style.left = Math.random() * window.innerWidth + "px";
+        conf.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(conf);
+
+        setTimeout(() => conf.remove(), 4000);
+    }
+};
+
+// 🎶 Audio control
+let isPlaying = false;
+
+function playAudio() {
+    let audio = document.getElementById("voice");
+    let btn = document.querySelector(".play-btn");
+
+    if (!isPlaying) {
+        audio.play();
+        btn.innerHTML = "⏸";
+        isPlaying = true;
+
+        audio.onended = function() {
+            btn.innerHTML = "▶";
+            isPlaying = false;
+
+            // show button after audio ends
+            document.getElementById("nextBtn").classList.add("show");
+        };
+
+    } else {
+        audio.pause();
+        btn.innerHTML = "▶";
+        isPlaying = false;
+    }
+}
+
+// 👉 Go next page
+function goNext() {
+    window.location.href = "wait.html";
+}
+</script>
+
+</body>
+</html>
